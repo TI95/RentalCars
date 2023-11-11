@@ -93,6 +93,14 @@ $('#mini-popup-btn').click(function () {
     }
 });
 
+$('.popup-body').click(() => {
+    $('.popup-body').css({
+        display: ('none')
+    })
+    $('body').css({
+        overflow: 'unset'
+    })
+})
 
 const setControlError = (control) => {
     control.next().show();
@@ -102,7 +110,7 @@ const setControlError = (control) => {
     });
 }
 
-let errorStarEndDate =  $('.error-start-end-date')
+let errorStarEndDate = $('.error-start-end-date')
 
 const setStarEndDateError = (control) => {
     errorStarEndDate.show();
@@ -197,7 +205,7 @@ $('#popup-btn').click(() => {
 
     let hasError = false;
     $('.error').hide();
-    $ ('.error-start-date').hide()
+    $('.error-start-date').hide()
 
     let today = new Date();
     let day = today.getDate();
@@ -225,8 +233,7 @@ $('#popup-btn').click(() => {
         setStarEndDateError(startDate);
         startDate.val(minDate);
         hasError = true;
-    }
-    else {
+    } else {
         resetControlError(startDate);
         errorStarEndDate.hide();
     }
@@ -235,7 +242,7 @@ $('#popup-btn').click(() => {
         setStarEndDateError(endDate);
         endDate.val(minMaxDate);
         hasError = true;
-    }else {
+    } else {
         resetControlError(endDate);
         errorStarEndDate.hide();
     }
@@ -245,7 +252,6 @@ $('#popup-btn').click(() => {
         alert('Дата окончания аренды должна быть как минимум на день позже даты начала аренды!');
         hasError = true;
     }
-
 
 
     if (!carSelect.val()) {
@@ -293,7 +299,7 @@ $('#popup-btn').click(() => {
     }
 
     if (popupEmail.val()) {
-        if ( !emailPatter.test(email)) {
+        if (!emailPatter.test(email)) {
             mailValidationError(popupEmail);
             hasError = true;
         } else {
@@ -334,5 +340,4 @@ $('#popup-btn').click(() => {
     }
 
 });
-
 

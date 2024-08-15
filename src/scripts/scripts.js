@@ -69,7 +69,7 @@ $('#mini-popup-btn').click(function () {
     if (!hasError) {
         $.ajax({
             method: 'POST',
-            url: ' https://testologia.site/checkout',
+            url: ' https://testologia.ru/checkout',
             data: {name: miniPopupName.val(), phone: miniPopupNumber.val()}
         })
             .done(function (message) {
@@ -82,6 +82,7 @@ $('#mini-popup-btn').click(function () {
                         $('#mini-popup-form')[0].reset();
                         closePopup(miniPopupBody);
                     });
+                    $(document).off('click');
 
 
                 } else {
@@ -94,8 +95,10 @@ $('#mini-popup-btn').click(function () {
 });
 
 $('.popup-body').click(() => {
-    $(document).on('click', function(event) {
+    $(document).on('click', function (event) {
         if (!$(event.target).closest('.popup-container').length) {
+            $('#mini-popup-form')[0].reset();
+            $('#popup-form')[0].reset();
             closePopup($('.popup-body'));
         }
     });
@@ -145,7 +148,6 @@ const openPopup = (popup) => {
 
     popup.show();
     $('body').css({overflow: 'hidden'});
-
 
 
     $('.your-name').on('keypress', function (keydown) {
@@ -311,7 +313,7 @@ $('#popup-btn').click(() => {
     if (!hasError) {
         $.ajax({
             method: 'POST',
-            url: ' https://testologia.site/checkout',
+            url: ' https://testologia.ru/checkout',
             data: {
                 Car: carSelect.val(),
                 startDate: startDate.val(),
@@ -332,6 +334,7 @@ $('#popup-btn').click(() => {
                         $('#popup-form')[0].reset();
 
                     });
+                    $(document).off('click');
                 } else {
                     alert('Упс, что-то не так!')
                 }

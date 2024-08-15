@@ -8,7 +8,7 @@ const cleanCSS = require('gulp-clean-css');
 const paths = {
 
     html: {
-        src: 'src/index.html'
+        src: 'index.html'
 
     },
 
@@ -54,7 +54,7 @@ function styles() {
             level: 2
         }))
         .pipe(concat('main.min.css'))
-        .pipe(gulp.dest('dist/styles'));
+        .pipe(gulp.dest('dist/src/styles'));
 }
 
 
@@ -63,27 +63,27 @@ function scripts() {
         .pipe(browserSync.stream())
         .pipe(minify())
         .pipe(concat('main.min.js'))
-        .pipe(gulp.dest('dist/scripts'));
+        .pipe(gulp.dest('dist/src/scripts'));
 }
 
 function libs() {
     return (gulp.src(paths.libs.src))
-        .pipe(gulp.dest('dist/libs'));
+        .pipe(gulp.dest('dist/src/libs'));
 }
 
 function additional() {
     return (gulp.src(paths.additional.src))
-        .pipe(gulp.dest('dist/styles/additional'));
+        .pipe(gulp.dest('dist/src/styles/additional'));
 }
 
 function img() {
     return (gulp.src(paths.img.src))
-        .pipe(gulp.dest('dist/images'));
+        .pipe(gulp.dest('dist/src/images'));
 }
 
 function fonts() {
     return (gulp.src(paths.fonts.src))
-        .pipe(gulp.dest('dist/fonts'));
+        .pipe(gulp.dest('dist/src/fonts'));
 }
 
 function watch() {
@@ -99,4 +99,4 @@ watch = gulp.series(gulp.parallel(styles, scripts))
 
 const build = gulp.series(html, styles, scripts, libs, additional, img, fonts)
 
-exports.default = build
+exports.build = build

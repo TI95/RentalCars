@@ -94,12 +94,11 @@ $('#mini-popup-btn').click(function () {
 });
 
 $('.popup-body').click(() => {
-    $('.popup-body').css({
-        display: ('none')
-    })
-    $('body').css({
-        overflow: 'unset'
-    })
+    $(document).on('click', function(event) {
+        if (!$(event.target).closest('.popup-container').length) {
+            closePopup($('.popup-body'));
+        }
+    });
 })
 
 const setControlError = (control) => {
@@ -147,6 +146,8 @@ const openPopup = (popup) => {
     popup.show();
     $('body').css({overflow: 'hidden'});
 
+
+
     $('.your-name').on('keypress', function (keydown) {
         const key = keydown.key;
         if (!/^[A-Za-z]$/.test(key)) {
@@ -185,7 +186,7 @@ const closePopup = (popup) => {
     $('.form-container').show();
     $('.order-success-container').hide();
     $('body').css({overflow: 'unset'});
-
+    $(document).off('click');
 }
 
 
